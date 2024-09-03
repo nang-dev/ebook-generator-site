@@ -1,0 +1,177 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+
+/* Typography */
+.h1 {
+  @apply text-4xl font-extrabold leading-tight tracking-tighter;
+}
+
+.h2 {
+  @apply text-3xl font-extrabold leading-tight tracking-tighter;
+}
+
+.h3 {
+  @apply text-3xl font-bold leading-tight;
+}
+
+.h4 {
+  @apply text-2xl font-bold leading-snug tracking-tight;
+}
+
+@screen md {
+  .h1 {
+    @apply text-5xl;
+  }
+
+  .h2 {
+    @apply text-4xl;
+  }
+}
+
+/* Additional Tailwind directives: https://tailwindcss.com/docs/functions-and-directives/#responsive */
+@layer components {
+  /* Buttons */
+  .btn {
+    @apply px-4 py-2.5 shadow-lg font-medium inline-flex items-center justify-center rounded-md;
+  }
+
+  .btn-white {
+    @apply bg-stone-100 text-black border border-solid hover:opacity-80 hover:border-[#FF3D00] border-primary-black shadow-sm;
+  }
+
+  .btn-black {
+    @apply bg-stone-800 text-white border border-solid border-white/20 shadow-sm hover:bg-stone-700;
+  }
+
+  .btn-orange {
+    @apply bg-[#FF3D00] hover:bg-[#FF3D00]/90 text-white border border-solid border-white/20 shadow-sm;
+  }
+
+  .btn-green {
+    @apply bg-green-500 text-white border border-solid hover:opacity-80 hover:border-green-600 border-primary-black shadow-sm;
+  }
+
+  .btn-blue {
+    @apply bg-blue-500 text-white border border-solid hover:opacity-80 hover:border-blue-400 border-primary-black shadow-sm;
+  }
+
+  /* Forms */
+  .form-input,
+  .form-textarea,
+  .form-multiselect,
+  .form-select,
+  .form-checkbox,
+  .form-radio {
+    @apply bg-white border border-gray-300 focus:border-[#FF3D00] text-base;
+  }
+
+  .form-input,
+  .form-textarea,
+  .form-multiselect,
+  .form-select,
+  .form-checkbox {
+    @apply rounded;
+  }
+
+  .form-input,
+  .form-textarea,
+  .form-multiselect,
+  .form-select {
+    @apply py-3 px-4;
+  }
+
+  .form-input,
+  .form-textarea {
+    @apply placeholder-gray-500;
+  }
+
+  .form-select {
+    @apply pr-10;
+  }
+
+  .form-checkbox,
+  .form-radio {
+    @apply text-gray-800 rounded-sm;
+  }
+
+  /* BORDERS */
+  .border-primary-black {
+    @apply border-black/[15%];
+  }
+
+  .border-secondary-black {
+    @apply border-black/10;
+  }
+
+  .border-tertiary-black {
+    @apply border-black/5;
+  }
+
+  .border-primary-white {
+    @apply border-white/[15%];
+  }
+
+  .border-secondary-white {
+    @apply border-white/10;
+  }
+
+  .border-tertiary-white {
+    @apply border-white/5;
+  }
+
+  /* used for background overlays, such as when a modal is open and it needs a backdrop */
+  .bg-scrim-black {
+    @apply bg-black bg-opacity-80;
+  }
+
+  .bg-scrim-white {
+    @apply bg-white bg-opacity-80;
+  }
+
+  /* OVERLAYS */
+  .overlay-primary-black {
+    @apply bg-black/[15%];
+  }
+
+  .overlay-secondary-black {
+    @apply bg-black/10;
+  }
+
+  .overlay-tertiary-black {
+    @apply bg-black/5;
+  }
+
+  .overlay-primary-white {
+    @apply bg-white/[15%];
+  }
+
+  .overlay-secondary-white {
+    @apply bg-white/10;
+  }
+
+  .overlay-tertiary-white {
+    @apply bg-white/5;
+  }
+}
+
+/* ------- */
+
+img:last-of-type {
+  padding-left: 8px;
+}
+
+.carousel-section {
+  animation: swipe var(--speed) linear infinite backwards;
+}
+
+@keyframes swipe {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-100%);
+  }
+}
