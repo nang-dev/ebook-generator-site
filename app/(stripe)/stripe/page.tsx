@@ -16,6 +16,7 @@ const ProductDisplay = () => {
       const redirectUrl = await sendCheckoutPostRequest("Stubborn Attachments", "General", "generate");
       window.location.href = redirectUrl;
     } catch (err) {
+      console.error("Checkout error:", err);
       setError(err instanceof Error ? err.message : 'An unknown error occurred');
     } finally {
       setIsLoading(false);
@@ -39,7 +40,8 @@ const ProductDisplay = () => {
           {isLoading ? 'Processing...' : 'Checkout'}
         </button>
       </form>
-      {error && <p className="error">{error}</p>}
+      {error && <p className="error">Error: {error}</p>}
+      {isLoading && <p>Please wait, processing your request...</p>}
     </section>
   );
 };

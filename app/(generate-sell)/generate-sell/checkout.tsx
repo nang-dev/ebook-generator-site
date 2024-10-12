@@ -1,3 +1,3 @@
-import { sendCheckoutPostRequest } from '../generate/checkout';
+import { sendCheckoutPostRequest, CheckoutRequestData } from '../generate/checkout';
 
-export { sendCheckoutPostRequest };
+export { sendCheckoutPostRequest, CheckoutRequestData };
