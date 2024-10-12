@@ -1,28 +1,48 @@
 'use client';
 
-
 import React, { useState, useEffect } from "react";
+import { sendCheckoutPostRequest } from "../generate/checkout";
 import "./App.css";
 
-const ProductDisplay = () => (
-  <section>
-    <div className="product">
-      <img
-        src="https://i.imgur.com/EHyR2nP.png"
-        alt="The cover of Stubborn Attachments"
-      />
-      <div className="description">
-      <h3>Stubborn Attachments</h3>
-      <h5>$20.00</h5>
+const ProductDisplay = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleCheckout = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setError(null);
+    try {
+      const redirectUrl = await sendCheckoutPostRequest("Stubborn Attachments", "General", "generate");
+      window.location.href = redirectUrl;
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An unknown error occurred');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <section>
+      <div className="product">
+        <img
+          src="https://i.imgur.com/EHyR2nP.png"
+          alt="The cover of Stubborn Attachments"
+        />
+        <div className="description">
+          <h3>Stubborn Attachments</h3>
+          <h5>$20.00</h5>
+        </div>
       </div>
-    </div>
-    <form action="http://127.0.0.1:8000/create-checkout-session" method="POST">
-      <button type="submit">
-        Checkout
-      </button>
-    </form>
-  </section>
-);
+      <form onSubmit={handleCheckout}>
+        <button type="submit" disabled={isLoading}>
+          {isLoading ? 'Processing...' : 'Checkout'}
+        </button>
+      </form>
+      {error && <p className="error">{error}</p>}
+    </section>
+  );
+};
 
 type MessageProps = {
   message: string;
